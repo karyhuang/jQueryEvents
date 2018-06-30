@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Events Demo</title>
+  <!-- include jQuery in head or right before scripts in the body -->
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>jQuery Events</h1>
+  <h2>This is an h2</h2>
+  <h2>This is another h2</h2>
+  <h2>This is yet another h2</h2>
+
+  <input type="text">
+
+  <button>Don't click me</button>
+  <button>Seriously, don't click me</button>
+  <button>This is your last warning!</button>
+
+  <script type="text/javascript">
+
+    // .click()
+    $('h1').click(function(){
+      alert('h1 clicked');
+    });
+    $('button').click(function(){
+      // $(this) is same function as the 'this' keyword in VanillaJS
+      $(this).css('backgroundColor','pink');
+      var text = $(this).text();
+      console.log('You clicked ' + text);
+    });
+
+    // .keypress()
+    $('input').keypress(function(){
+      console.log('You pressed a key');
+    });
+    // pass the type of event as parameter, in this case, event type is keypress
+    // it can be named anything besides 'event'
+    $('input').keypress(function(event){
+      // if the key pressed is number 13 (the keycode for enter)
+      if(event.which === 13){
+        alert('You hit enter');
+      }
+    });
+
+    // .on()
+    // can be used to listen many events, most common
+    $('h2').on('click',function(){
+      $(this).css('color','pink');
+    });
+    $('button').on('mouseenter',function(){
+      $(this).css('fontWeight','bold');
+    });
+    $('button').on('mouseleave',function(){
+      $(this).css('fontWeight','normal');
+    });
+  </script>
+</body>
+</html>
